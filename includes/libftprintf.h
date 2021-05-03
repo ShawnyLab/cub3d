@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 18:27:00 by llefranc          #+#    #+#             */
-/*   Updated: 2021/04/24 20:39:20 by jinspark         ###   ########.fr       */
+/*   Created: 2021/05/03 20:20:07 by jinspark          #+#    #+#             */
+/*   Updated: 2021/05/03 20:20:30 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct	s_number
 	int			s1fird;
 	int			s2fird;
 }				t_number;
-
 int					get_next_line(int fd, char **line);
 int					ft_printf(const char *str, ...);
 void				*ft_memset(void *b, int c, size_t len);
@@ -72,7 +71,6 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-
 char			*big_int_add(char *s1, char *s2);
 char			*big_int_subs(char *s1, char *s2);
 char			*big_int_mult(char *s1, char *s2);

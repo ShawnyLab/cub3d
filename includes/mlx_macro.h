@@ -5,18 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/10 09:19:40 by llepage           #+#    #+#             */
-/*   Updated: 2021/04/24 20:39:32 by jinspark         ###   ########.fr       */
+/*   Created: 2021/05/03 20:20:35 by jinspark          #+#    #+#             */
+/*   Updated: 2021/05/03 20:20:37 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYCODE_H
 
 # define KEYCODE_H
-
-/*
-** Macros for mlx_hook function
-*/
 
 # define NOEVENTMASK 0L
 # define KEYPRESSMASK (1L<<0)
@@ -45,22 +41,22 @@
 # define COLORMAPCHANGEMASK (1L<<23)
 # define OWNERGRABBUTTONMASK (1L<<24)
 
-# define KEYPRESS 2 //(int keycode, void param)
-# define KEYRELEASE 3 //(int keycode, void param)
-# define BUTTONPRESS 4 //(int button, int x, int y, void param)
-# define BUTTONRELEASE 5 //(int button, int x, int y, void param)
-# define MOTIONNOTIFY 6 //(int x, int y, void param) >> mouvement souris
+# define KEYPRESS 2
+# define KEYRELEASE 3
+# define BUTTONPRESS 4
+# define BUTTONRELEASE 5
+# define MOTIONNOTIFY 6
 # define ENTERNOTIFY 7
 # define LEAVENOTIFY 8
 # define FOCUSIN 9
 # define FOCUSOUT 10
 # define KEYMAPNOTIFY 11 
-# define EXPOSE 12 //(void param) when you're putting the window
+# define EXPOSE 12
 # define GRAPHICSEXPOSE 13
 # define NOEXPOSE 14
 # define VISIBILITYNOTIFY 15
 # define CREATENOTIFY 16
-# define DESTROYNOTIFY 17 //(void param) allow to exit (la croix)
+# define DESTROYNOTIFY 17
 # define UNMAPNOTIFY 18
 # define MAPNOTIFY 19
 # define MAPREQUEST 20
@@ -69,10 +65,6 @@
 # define CONFIGUREREQUEST 23
 # define GRAVITYNOTIFY 24
 
-/*
-** Mouse button keycodes
-*/
-
 # define BUT1_KEY 1
 # define BUT2_KEY 2
 # define BUT3_KEY 3
@@ -80,14 +72,6 @@
 # define SCROLLDOWN_KEY 5
 # define SCROLLLEFT_KEY 6
 # define SCROLLRIGHT_KEY 7
-
-/*
-** Keyboard keys
-*/
-
-/*
-** Letters keys
-*/
 
 # define A_KEY 0
 # define B_KEY 11
@@ -116,10 +100,6 @@
 # define Y_KEY 16
 # define Z_KEY 6
 
-/*
-** Numbers (not numeric keypad ones)
-*/
-
 # define K1_KEY 18
 # define K2_KEY 19
 # define K3_KEY 20
@@ -130,22 +110,6 @@
 # define K8_KEY 28
 # define K9_KEY 25
 # define K0_KEY 29
-
-/*
-** Special characters
-** SP_KEY is the space ( ) key
-** BQ_KEY is the back quote (`) and tilde (~) key
-** MN_KEY is the minus (-) and underscore (_) key
-** PL_KEY is the plus (+) and equal (=) key
-** SBO_KEY is the square bracket opening ([) and brace opening ({) key
-** SBC_KEY is the square bracket closing (]) and brace closing (}) key
-** BSL_KEY is the backslash (\) and pipe (|) key
-** SC_KEY is the semicolon (;) and colon (:) key
-** SQ_KEY is the simple quote (') and double quote (") key
-** CM_KEY is the comma (,) and angle bracket opening (<) key
-** PT_KEY is the point (.) and angle bracket closing (>) key
-** SL_KEY is the slash (/) and question mark (?) key
-*/
 
 # define SP_KEY 49
 # define BQ_KEY 50
@@ -159,11 +123,6 @@
 # define CM_KEY 43
 # define PT_KEY 47
 # define SL_KEY 44
-
-/*
-** Functions keys, you might use fn key to use them
-** I didn't find the F11_KEY value
-*/
 
 # define F1_KEY 122
 # define F2_KEY 120
@@ -185,29 +144,10 @@
 # define F18_KEY 79
 # define F19_KEY 80
 
-/*
-** Arrow keys
-*/
-
 # define UP_KEY 13
 # define DOWN_KEY 1
 # define RIGHT_KEY 124
 # define LEFT_KEY 123
-
-/*
-** Special keys
-** CL_KEY is the caps lock key
-** LSFT_KEY and RLFT_KEY are the left shift and right shift keys
-** LCTRL_KEY and RCTRL_KEY are the left control and right control keys
-** LOPT_KEY and ROPT_KEY are the left option and right option keys
-** LCMD_KEY and RCMD_KEY are the left command and right command keys
-** LDEL_KEY and RDEL_KEY are the left delete and right delete keys
-** RTN_KEY is the return key
-** EJ_KEY is the eject key and doesn't react
-** PUP_KEY and PDOWN_KEY are the page up and page down keys
-** CLR_KEY is the clear key
-*/
-
 # define ESC_KEY 53
 # define TAB_KEY 48
 # define CL_KEY 272
@@ -228,19 +168,7 @@
 # define END_KEY 119
 # define PUP_KEY 116
 # define PDOWN_KEY 121
-# define CLR_KEY 71
-
-/*
-** Numeric keyboard keys, preceded by NK
-** NKEQ_KEY is the equal (=) key
-** NKSL_KEY is the slash (/) key
-** NKWC_KEY is the wildcard (*) key
-** NKMN_KEY is the minus (-) key
-** NKPL_KEY is the plus (+) key
-** NKPT_KEY is the point (.) key
-** NKNTR_KEY is the enter key
-*/
-
+# define CLR_KEY 7
 # define NK1_KEY 83
 # define NK2_KEY 84
 # define NK3_KEY 85

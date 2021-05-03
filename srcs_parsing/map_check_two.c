@@ -6,85 +6,104 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 14:42:28 by jinspark          #+#    #+#             */
-/*   Updated: 2021/04/25 15:51:39 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:58:16 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	ft_check_now(t_pars *par, int i, int *now, int *bef)
+void	walls_check_actual(t_pars *par, int i, int *actual, int *previous)
 {
 	long	j;
-	
-	j = ft_len_map(bef) - 1;
+
+	j = len_line_map(previous) - 1;
 	i++;
-	while (--j >= 0)
-		if (now[j + i] != 1 && now[j + i] != -1)
-			ft_maperror("File .cub, map : must only be"
-			" surrunded by walls ('1')\n", par, now);
+	while (--i >= 0)
+		if (actual[j + i] != 1 && actual[j + i] != -1)
+			error_msg_map("File .cub, map : must only be"
+			" surrunded by walls ('1')\n", par, actual);
 }
 
-void	ft_check_bef(t_pars *par, int i, int *bef)
+void	check_spaces_actual(t_pars *par, int i, int *actual, int *previous)
 {
-	long	j;
-	j = ft_len_map(bef) - 1;
-	i--;
-	while (++i <= 0)
-		if (bef[j + i] != 1 && bef[j + i] != -1)
-			ft_maperror("File .cub, map : must only be"
-			" surrunded by walls ('1')\n", par, bef);
+	int		bad_charac;
+	int		j;
+
+	bad_charac = 0;
+	j = len_line_map(previous) - 1;
+	if (i != 0)
+		bad_charac += (actual[i - 1] != -1 && actual[i - 1] != 1) ? 1 : 0;
+	if (actual[i + 1] != -2)
+		bad_charac += (actual[i + 1] != -1 && actual[i + 1] != 1) ? 1 : 0;
+	if (i != 0 && i - 1 <= j)		
+		bad_charac += (previous[i - 1] != -1 && previous[i - 1] != 1) ? 1 : 0;
+	if (i <= j)
+		bad_charac += (previous[i] != -1 && previous[i] != 1) ? 1 : 0;
+	if (i + 1 <= j)
+		bad_charac += (previous[i + 1] != -1 && previous[i + 1] != 1) ? 1 : 0;
+	if (bad_charac)
+		error_msg_map("File .cub, map : must only be surrunded"
+				" by walls ('1)\n", par, previous);
 }
 
-int		ft_len_map(int *line)
+void	check_spaces_previous(t_pars *par, int i, int *actual, int *previous)
+{
+	int		bad_charac;
+	int		j;
+
+	bad_charac = 0;
+	j = len_line_map(actual) - 1;
+	if (i != 0)
+		bad_charac += (previous[i - 1] != -1 && previous[i - 1] != 1) ? 1 : 0;
+	if (previous[i + 1] != -2)
+		bad_charac += (previous[i + 1] != -1 && previous[i + 1] != 1) ? 1 : 0;
+	if (i != 0 && i - 1 <= j)
+		bad_charac += (actual[i - 1] != -1 && actual[i - 1] != 1) ? 1 : 0;
+	if (i <= j)
+		bad_charac += (actual[i] != -1 && actual[i] != 1) ? 1 : 0;
+	if (i + 1 <= j)
+		bad_charac += (actual[i + 1] != -1 && actual[i + 1] != 1) ? 1 : 0;
+	if (bad_charac)
+		error_msg_map("File .cub, map : must only be surrunded"
+				" by walls ('1)\n", par, previous);
+}
+
+void	walls_check(t_pars *par, int *actual, int *previous)
+{
+	long	i;
+
+	i = 0;
+	if (actual[0] != 1 && actual[0] != -1)
+		error_msg_map("File .cub, map : must only be surrunded"
+				" by walls ('1)\n", par, previous);
+	line_is_ended_by_wall(par, previous);
+	line_is_ended_by_wall(par, actual);
+	i = len_line_map(actual) - len_line_map(previous);
+	if (i < 0)
+		walls_check_previous(par, i, previous);
+	else
+		walls_check_actual(par, i, actual, previous);
+	i = -1;
+	while (actual[++i] != -2)
+		if (actual[i] == -1)
+			check_spaces_actual(par, i, actual, previous);
+	i = -1;
+	while (previous[++i] != -2)
+		if (previous[i] == -1)
+			check_spaces_previous(par, i, actual, previous);
+}
+
+void	doors_check(t_pars *par, int *next, int *actual, int *previous)
 {
 	int		i;
 
-	i = 0;
-	while (line[i] != -2)
-		i++;
-	return (i);
-}
-
-void	ft_now_spaces(t_pars *par, int i, int *now, int *bef)
-{
-	int		err;
-	int		j;
-
-	err = 0;
-	j = ft_len_map(bef) - 1;
-	if (i != 0)
-		err += (now[i - 1] != -1 && now[i - 1] != 1) ? 1 : 0;
-	if (now[i + 1] != -2)
-		err += (now[i + 1] != -1 && now[i + 1] != 1) ? 1 : 0;
-	if (i != 0 && i - 1 <= j)		
-		err += (bef[i - 1] != -1 && bef[i - 1] != 1) ? 1 : 0;
-	if (i <= j)
-		err += (bef[i] != -1 && bef[i] != 1) ? 1 : 0;
-	if (i + 1 <= j)
-		err += (bef[i + 1] != -1 && bef[i + 1] != 1) ? 1 : 0;
-	if (err)
-		ft_maperror("File .cub, map : must only be surrunded"
-				" by walls ('1)\n", par, bef);
-}
-
-void	ft_bef_spaces(t_pars *par, int i, int *now, int *bef)
-{
-	int		err;
-	int		j;
-
-	err = 0;
-	j = len_line_map(now) - 1;
-	if (i != 0)
-		err += (bef[i - 1] != -1 && bef[i - 1] != 1) ? 1 : 0;
-	if (bef[i + 1] != -2)
-		err += (bef[i + 1] != -1 && bef[i + 1] != 1) ? 1 : 0;
-	if (i != 0 && i - 1 <= j)
-		err += (now[i - 1] != -1 && now[i - 1] != 1) ? 1 : 0;
-	if (i <= j)
-		err += (now[i] != -1 && now[i] != 1) ? 1 : 0;
-	if (i + 1 <= j)
-		err += (now[i + 1] != -1 && now[i + 1] != 1) ? 1 : 0;
-	if (err)
-		error_msg_map("File .cub, map : must only be surrunded"
-				" by walls ('1)\n", par, bef);
+	i = -1;
+	while (actual[++i] != -2)
+	{
+		if ((actual[i] == 2 || actual[i] == 3) && !((actual[i - 1] == 1 &&
+				actual[i + 1] == 1 && previous[i] != 1 && next[i] != 1) ||
+				(actual[i - 1] != 1 && actual[i + 1] != 1 && previous[i]
+				== 1 && next[i] == 1)))
+			error_msg_map("File .cub, map : doors must be surrunded by 2 walls\n", par, actual);
+	}
 }

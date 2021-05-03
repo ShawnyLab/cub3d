@@ -6,13 +6,13 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 20:45:53 by jinspark          #+#    #+#             */
-/*   Updated: 2021/04/28 20:45:39 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 13:55:18 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	ft_struct_init(t_pars *par)
+void	struct_init_par(t_pars *par)
 {
 	par->fd = -1;
 	par->reso[0] = -1;
@@ -30,9 +30,9 @@ void	ft_struct_init(t_pars *par)
 	par->map = NULL;
 }
 
-void	ft_free_all(t_pars *par)
+void	struct_free(t_pars *par)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	par->fd != -1 ? close(par->fd) : 0;
@@ -52,49 +52,21 @@ void	ft_free_all(t_pars *par)
 	}
 }
 
-int		ft_str_error(char *str, t_pars *par, char *line)
+int		error_msg(char *str, t_pars *par, char *line)
 {
-	ft_printf("Error\n%s", str);
+    ft_printf("Error\n%s", str);
 	if (par)
-		free_all(par);
+		struct_free(par);
 	free(line);
 	exit(EXIT_FAILURE);
-	
 }
 
-int		ft_check_arg(int argc, char **argv)
-{
-	int		i;
-	int		ret;
-
-	i = 0;
-	ret = 0;
-	if (argc < 2)
-		ft_str_error("Arguments : no file, enter it with the first argument\n", NULL, NULL);
-	if (argc == 3)
-	{
-		if (ft_strcmp("--save", argv[2]))
-			ft_str_error("Arguments : second argument can only be '--save' option\n", NULL, NULL);
-		ret = 1;
-	}
-	if (argc > 3)
-	    ft_str_error("Arguments : too many arguments, enter only the map file (and save option)\n", NULL, NULL);
-	while (argv[1][i])
-		i++;
-	i -= 4;
-	if (ft_strcmp(&argv[1][i], ".cub"))
-		ft_str_error("Arguments : file map must end by \".cub\"\n", NULL, NULL);
-	if (!i)
-		ft_str_error("Arguments : file \".cub\" must have a name and not only be the extension\n", NULL, NULL);
-	return (ret);
-}
-
-int		ft_maperror(char *str, t_pars *par, int *line)
+int		error_msg_map(char *str, t_pars *par, int *line)
 {
 	int		i;
 
 	i = -1;
-	ft_printf("Error\n%s", str);
+    ft_printf("Error\n%s", str);
 	if (line)
 	{
 		ft_printf("Errored line : |");
@@ -116,6 +88,33 @@ int		ft_maperror(char *str, t_pars *par, int *line)
 		ft_printf("|\n");
 	}
 	if (par)
-		ft_free_all(par);
+		struct_free(par);
 	exit(EXIT_FAILURE);
+}
+
+int     check_arg(int ac, char **av)
+{
+    int		i;
+	int		ret;
+
+    i = 0;
+	ret = 0;
+    if (ac < 2)
+        error_msg("Arguments : no file, enter it with the first argument\n", NULL, NULL);
+    if (ac == 3)
+	{
+		if (ft_strcmp("--save", av[2]))
+			error_msg("Arguments : second argument can only be '--save' option\n", NULL, NULL);
+		ret = 1;
+	}
+	if (ac > 3)
+        error_msg("Arguments : too many arguments, enter only the map file (and save option)\n", NULL, NULL);
+	while (av[1][i])
+		i++;
+	i -= 4;
+	if (ft_strcmp(&av[1][i], ".cub"))
+		error_msg("Arguments : file map must end by \".cub\"\n", NULL, NULL);
+	if (!i)
+		error_msg("Arguments : file \".cub\" must have a name and not only be the extension\n", NULL, NULL);
+    return (ret);
 }

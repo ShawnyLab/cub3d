@@ -6,13 +6,13 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 16:26:38 by jinspark          #+#    #+#             */
-/*   Updated: 2021/04/25 16:33:04 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 15:34:01 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	ft_init_guard(t_sprites *new)
+void	init_sprite_guard(t_sprites *new)
 {
 	new->guard.line_img = G_BASIC_L;
 	new->guard.row_img = G_BASIC_R;
@@ -20,33 +20,31 @@ void	ft_init_guard(t_sprites *new)
 	new->guard.shooting = 0;
 }
 
-void	ft_add_spr_two(t_mlx *mlx, t_sprites *new)
+void	add_sprite_info(t_mlx *mlx, t_rcast *cam, int line, int row)
 {
-	int			i;
-	t_sprites	**tmp;
+	t_sprites	*new;
 
-	i = 0;
-	if (!mlx->spri)
+	if (!(new = malloc(sizeof(*new))))
 	{
-		if (!(mlx->spri = malloc(sizeof(*tmp) * 2)))
-			ft_err_img("Malloc failed\n", mlx);
-		mlx->spri[0] = new;
-		mlx->spri[1] = NULL;
+		free_sprite_struct(mlx->spri);
+		error_msg_destroy_img("Malloc failed\n", mlx);
 	}
-	else
-	{
-		tmp = mlx->spri;
-		while (mlx->spri[i])
-			i++;
-		if (!(mlx->spri = malloc(sizeof(*tmp) * (i + 2))))
-		{
-			ft_free_spr(mlx->spri);
-			ft_err_img("Malloc failed\n", mlx);
-		}
-		mlx->spri[i] = new;
-		mlx->spri[i + 1] = NULL;
-		while (--i >= 0)
-			mlx->spri[i] = tmp[i];
-		free(tmp);
-	}
+	new->type = cam->map[line][row];
+	new->size = sprite_size(new->type);
+	new->addr_img = add_sprite_img_addr(mlx, new->type);
+	new->inv_color = sprites_background_color(new->type);
+	new->x = (double)row + 0.5;
+	new->y = (double)line + 0.5;
+	new->ray_len = -1.0;
+	new->start_line_img = -1;
+	new->freq_pixel = -1.0;
+	new->nb_pix = -1.0;
+	new->row_percent = -1.0;
+	new->a.x = -1.0;
+	new->a.y = -1.0;
+	new->b.x = -1.0;
+	new->b.y = -1.0;
+	if (new->type == SP_GUARD)
+		init_sprite_guard(new);
+	add_sprite_struct(mlx, new);
 }

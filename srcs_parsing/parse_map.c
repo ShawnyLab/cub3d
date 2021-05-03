@@ -6,24 +6,24 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 22:12:38 by jinspark          #+#    #+#             */
-/*   Updated: 2021/04/25 16:01:19 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 14:01:27 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-int		**ft_add_map(t_pars *par, int *line)
+int		**add_map_line(t_pars *par, int *line)
 {
-	int	i;
-	int	**tmp;
-
+	int i;
+	int **tmp;
+	
 	i = 0;
 	if (!par->map)
 	{
 		if (!(par->map = malloc(sizeof(int *) * 2)))
 			return (NULL);
 		par->map[0] = line;
-		par->map[1] = (NULL);
+		par->map[1] = NULL;
 	}
 	else
 	{
@@ -36,7 +36,7 @@ int		**ft_add_map(t_pars *par, int *line)
 			return (NULL);
 		}
 		par->map[i] = line;
-		par->map[i + 1] = (NULL);
+		par->map[i + 1] = NULL;
 		while (--i >= 0)
 			par->map[i] = tmp[i];
 		free(tmp);
@@ -44,7 +44,7 @@ int		**ft_add_map(t_pars *par, int *line)
 	return (par->map);
 }
 
-int		*ft_convert_int(char *line)
+int		*convert_int_line(char *line)
 {
 	int		i;
 	int		*int_line;
@@ -63,18 +63,18 @@ int		*ft_convert_int(char *line)
 	return (int_line);
 }
 
-int		ft_parse_map(t_pars *par, char *line)
+int		parse_map(t_pars *par, char *line)
 {
-	int	i;
-	int	*int_line;
+	int i;
+	int *int_line;
 
 	i = 0;
-	if (!(int_line = ft_convert_int(line)))
-		ft_str_error("Malloc failed\n", par, line);
-	if (!(par->map = ft_add_map(par, int_line)))
+	if (!(int_line = convert_int_line(line)))
+		error_msg("Malloc failed\n", par, line);
+	if (!(par->map = add_map_line(par, int_line)))
 	{
 		free(int_line);
-		ft_str_error("Malloc failed\n", par, line);
+		error_msg("Malloc failed\n", par, line);
 	}
 	return (1);
 }
