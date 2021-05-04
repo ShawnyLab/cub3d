@@ -6,40 +6,38 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 20:20:35 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/03 20:20:37 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 22:09:58 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYCODE_H
-
-# define KEYCODE_H
-
+#ifndef MLX_MACRO_H
+# define MLX_MACRO_H
 # define NOEVENTMASK 0L
-# define KEYPRESSMASK (1L<<0)
-# define KEYRELEASEMASK (1L<<1)
-# define BUTTONPRESSMASK (1L<<2)
-# define BUTTONRELEASEMASK (1L<<3)
-# define ENTERWINDOWMASK (1L<<4)
-# define LEAVEWINDOWMASK (1L<<5)
-# define POINTERMOTIONMASK (1L<<6)
-# define POINTERMOTIONHINTMASK (1L<<7)
-# define BUTTON1MOTIONMASK (1L<<8)
-# define BUTTON2MOTIONMASK (1L<<9)
-# define BUTTON3MOTIONMASK (1L<<10)
-# define BUTTON4MOTIONMASK (1L<<11)
-# define BUTTON5MOTIONMASK (1L<<12)
-# define BUTTONMOTIONMASK (1L<<13)
-# define KEYMAPSTATEMASK (1L<<14)
-# define EXPOSUREMASK (1L<<15)
-# define VISIBILITYCHANGEMASK (1L<<16)
-# define STRUCTURENOTIFYMASK (1L<<17)
-# define RESIZEREDIRECTMASK (1L<<18)
-# define SUBSTRUCTURENOTIFYMASK (1L<<19)
-# define SUBSTRUCTUREREDIRECTMASK (1L<<20)
-# define FOCUSCHANGEMASK (1L<<21)
-# define PROPERTYCHANGEMASK (1L<<22)
-# define COLORMAPCHANGEMASK (1L<<23)
-# define OWNERGRABBUTTONMASK (1L<<24)
+# define KEYPRESSMASK 1L
+# define KEYRELEASEMASK 2L
+# define BUTTONPRESSMASK 4L
+# define BUTTONRELEASEMASK 8L
+# define ENTERWINDOWMASK 16L
+# define LEAVEWINDOWMASK 32L
+# define POINTERMOTIONMASK 64L
+# define POINTERMOTIONHINTMASK 128L
+# define BUTTON1MOTIONMASK 256L
+# define BUTTON2MOTIONMASK 512L
+# define BUTTON3MOTIONMASK 1024L
+# define BUTTON4MOTIONMASK 2048L
+# define BUTTON5MOTIONMASK 4096L
+# define BUTTONMOTIONMASK 8192L
+# define KEYMAPSTATEMASK 16384L
+# define EXPOSUREMASK 32768L
+# define VISIBILITYCHANGEMASK 65536L
+# define STRUCTURENOTIFYMASK 131072L
+# define RESIZEREDIRECTMASK 262144L
+# define SUBSTRUCTURENOTIFYMASK 524288L
+# define SUBSTRUCTUREREDIRECTMASK 1048576L
+# define FOCUSCHANGEMASK 2097152L
+# define PROPERTYCHANGEMASK 4194304L
+# define COLORMAPCHANGEMASK 8388608L
+# define OWNERGRABBUTTONMASK 16777216L
 
 # define KEYPRESS 2
 # define KEYRELEASE 3
@@ -50,7 +48,7 @@
 # define LEAVENOTIFY 8
 # define FOCUSIN 9
 # define FOCUSOUT 10
-# define KEYMAPNOTIFY 11 
+# define KEYMAPNOTIFY 11
 # define EXPOSE 12
 # define GRAPHICSEXPOSE 13
 # define NOEXPOSE 14

@@ -6,7 +6,7 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 15:25:00 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/03 15:11:47 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 21:44:07 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	guards_animation(t_mlx *mlx, t_rcast *cam, t_sprites **spri)
 	i = -1;
 	while (spri[++i])
 		if (spri[i]->type == SP_GUARD)
-			check_guard_detect_player(mlx, cam, spri[i]);
+			check_detect_player(mlx, cam, spri[i]);
 	i = -1;
 	while (spri[++i])
 	{

@@ -6,7 +6,7 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 15:57:58 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/03 15:23:41 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 21:41:56 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	texture_resizing(t_mlx *mlx, t_texture *textu, double *pix_wall)
 	}
 }
 
-void	drawing_sky_wall_floor(t_mlx *mlx, t_texture *textu, int i, unsigned int pix_wall)
+void	drawing_swf(t_mlx *mlx, t_texture *textu, int i, unsigned int pix_wall)
 {
 	unsigned int	x;
 	unsigned int	pix_sky_floor;
@@ -129,7 +129,7 @@ void	raycasting(t_mlx *mlx)
 		pix_wall = nb_pixel_wall(mlx, mlx->cam, &textu,
 				positive_angle(mlx->cam->angle + (FOV / 2.0) - mlx->cam->freq_ray * (double)i));
 		texture_resizing(mlx, &textu, &pix_wall);
-		drawing_sky_wall_floor(mlx, &textu, i, (unsigned int)pix_wall);
+		drawing_swf(mlx, &textu, i, (unsigned int)pix_wall);
 		draw_sprites(mlx, mlx->spri, i);
 	}
 }

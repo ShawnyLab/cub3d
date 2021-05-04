@@ -6,7 +6,7 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 19:01:06 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/03 15:10:11 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 22:17:19 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	draw_death_screen(t_mlx *mlx)
 	i = 0;
 	gettimeofday(&end, NULL);
 	time = (double)(end.tv_usec - mlx->eve.time_player_death.tv_usec)
-			/ 1000000.0 + (double)(end.tv_sec - mlx->eve.time_player_death.tv_sec);
+			/ 1000000.0 + (double)(end.tv_sec -
+			mlx->eve.time_player_death.tv_sec);
 	if (time < 0.01)
 		draw_hud_and_gun_anims(mlx, mlx->par, &mlx->info);
 	if (mlx->eve.nb_life > 1 && time < 3.0)

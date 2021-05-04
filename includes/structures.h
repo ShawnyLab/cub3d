@@ -6,14 +6,14 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 20:26:31 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/03 20:30:05 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 22:15:44 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		STRUCTURES_H
-# define	STRUCTURES_H
+#ifndef STRUCTURES_H
+# define STRUCTURES_H
 
-# include	"cube3d.h"
+# include "cube3d.h"
 
 typedef struct		s_pars
 {

@@ -6,13 +6,13 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 16:17:48 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/03 14:46:13 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/03 21:43:00 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-void	check_guard_detect_player(t_mlx *mlx, t_rcast *cam, t_sprites *spri)
+void	check_detect_player(t_mlx *mlx, t_rcast *cam, t_sprites *spri)
 {
 	double	angle;
 	double	x_ray;
