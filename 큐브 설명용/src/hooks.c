@@ -6,12 +6,14 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 11:59:29 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/07 11:59:30 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/08 14:11:49 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
+/*
+다양한 키 입력에 대한 대응
+*/
 static int	key_press(int keycode, t_cub *cub)
 {
 	if (keycode == KEY_ESC)
@@ -47,7 +49,9 @@ static int	key_release(int keycode, t_cub *cub)
 		cub->map.player.turn_direction = 0;
 	return (0);
 }
-
+/*
+종료
+*/
 static int	close_window(int keycode, t_cub *cub)
 {
 	(void)keycode;
@@ -55,10 +59,12 @@ static int	close_window(int keycode, t_cub *cub)
 	exit(EXIT_SUCCESS);
 	return (0);
 }
-
+/*
+키입력, 방출 종료 설정
+*/
 void		set_hooks(t_cub *cub)
 {
-	if (LINUX)
+	if (LINUX)   //리눅스 일 때 
 	{
 		mlx_hook(cub->win, 33, (1L << 17),
 				close_window, cub);

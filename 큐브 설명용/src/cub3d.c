@@ -6,7 +6,7 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 11:59:25 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/07 13:18:06 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/18 14:18:26 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		update(t_cub *cub)
 	render(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win,
 			cub->image.img, 0, 0);
-	mlx_do_sync(cub->mlx);
+	mlx_do_sync(cub->mlx);    //Frame 동기화
 	return (0);
 }
 
@@ -47,7 +47,7 @@ int		main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	parse_cub(argv[1], &cub);
 	initialize(&cub);
-	if (!cub.savebmp)
+	if (!cub.savebmp)   //세이브가 아니라면
 		set_hooks(&cub);
 	else
 		update_savebmp(&cub);

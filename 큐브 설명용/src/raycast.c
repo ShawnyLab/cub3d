@@ -6,12 +6,14 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 12:00:56 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/07 12:00:58 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/17 14:38:52 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
+/*
+horz, vert 의 레이캐스팅 길이를 정해줌  벽에 닿지 않은 레이라면 Int_MAX
+*/
 static void	calc_ray_dist(t_raycast *horz, t_raycast *vert, t_map *map)
 {
 	if (horz->wall_hit == TRUE)
@@ -25,7 +27,9 @@ static void	calc_ray_dist(t_raycast *horz, t_raycast *vert, t_map *map)
 	else
 		vert->hit_dist = INT_MAX;
 }
-
+/*
+horz, vert 의 레이 길이를 비교 해서 작은 것으로 설정해줌
+*/
 static void	update_ray(t_raycast *horz, t_raycast *vert, t_ray *ray)
 {
 	if (vert->hit_dist < horz->hit_dist)
@@ -51,12 +55,14 @@ static void	cast_ray(t_map *map, t_ray *ray)
 	t_raycast	horz;
 	t_raycast	vert;
 
-	cast_ray_horz(&horz, map, ray);
-	cast_ray_vert(&vert, map, ray);
-	calc_ray_dist(&horz, &vert, map);
+	cast_ray_horz(&horz, map, ray);   //y 를 1씩 땡기며 레이캐스팅 
+	cast_ray_vert(&vert, map, ray);    //x 를 1씩 땡기며 레이캐스팅
+	calc_ray_dist(&horz, &vert, map);   //ray dist 설정
 	update_ray(&horz, &vert, ray);
 }
-
+/*
+부호 계산을 위해 레이의 방향 (동서남북) 계산
+*/
 static void	set_ray_direction(t_ray *ray)
 {
 	ray->is_ray_facing_down = ray->ray_angle > 0 && ray->ray_angle < PI;
@@ -72,7 +78,7 @@ void		cast_rays(t_cub *cub)
 	int		column;
 	t_ray	*ray;
 
-	ray_angle = cub->map.player.rotation_angle - cub->half_fov_angle;
+	ray_angle = cub->map.player.rotation_angle - cub->half_fov_angle;    //레이캐스팅 시작 각도
 	column = 0;
 	while (column < cub->width)
 	{

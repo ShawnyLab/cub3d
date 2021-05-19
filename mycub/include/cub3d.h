@@ -6,7 +6,7 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 11:56:34 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/07 11:56:36 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/12 16:42:57 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,10 +246,6 @@ typedef struct	s_cub
 	float		dist_proj_plane;
 }				t_cub;
 
-/*
-** Utility
-*/
-
 void			pixel_put(t_image *img, int x, int y, int color);
 int				pixel_get(t_image *img, int x, int y);
 void			draw_rectangle(t_cub *cub, t_point start,
@@ -264,47 +260,17 @@ int				strlen_isdigit(char *str);
 void			free_info_lst_quit(char **info, t_list *head, t_cub *cub,
 				char *err_msg);
 void			free_lst_quit(t_list *head, t_cub *cub, char *error_msg);
-
-/*
-** Others
-*/
-
 void			quit_cub(t_cub *cub, int exit_code, char *error_message);
 int				check_args(int argc, char **argv, t_cub *cub);
-
-/*
-** Move player
-*/
-
 void			move_player(t_player *player, t_cub *cub);
-
-/*
-** Draw
-*/
-
 void			draw_sprites(t_cub *cub);
 void			project_walls(t_cub *cub);
 void			draw_floor(int x, t_wall_strip *wall, t_cub *cub);
 void			draw_ceiling(int x, t_wall_strip *wall, t_cub *cub);
-
-/*
-** Raycast
-*/
-
 void			cast_rays(t_cub *cub);
 void			cast_ray_horz(t_raycast *horz, t_map *map, t_ray *ray);
 void			cast_ray_vert(t_raycast *vert, t_map *map, t_ray *ray);
-
-/*
-** Save to bitmap
-*/
-
 void			save_bitmap(t_cub *cub);
-
-/*
-** Parse .cub file
-*/
-
 void			parse_cub(char *path, t_cub *cub);
 void			parse_grid(t_list *trav, t_list *head, t_cub *cub);
 void			boundary_fill(int x, int y, int *open, t_cub *cub);
@@ -313,17 +279,7 @@ int				save_map(t_list *trav, t_cub *cub);
 int				parse_resolution(int *flags, t_cub *cub);
 int				parse_color(int *flags, t_cub *cub);
 int				parse_texture(int *flags, t_cub *cub);
-
-/*
-** Initialize
-*/
-
 void			initialize(t_cub *cub);
-
-/*
-** Set mouse and keyboard hooks
-*/
-
 void			set_hooks(t_cub *cub);
 
 #endif

@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbudau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 22:19:21 by gbudau            #+#    #+#             */
-/*   Updated: 2020/07/22 16:42:10 by gbudau           ###   ########.fr       */
+/*   Created: 2021/05/12 16:37:28 by jinspark          #+#    #+#             */
+/*   Updated: 2021/05/12 16:37:33 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-** Assign substrings separated by any char in delim into split array
-** Return the array of substrings or NULL in case of error
-*/
 
 static char		**ft_strtomatr(char **split, const char *s, char c)
 {
@@ -45,12 +40,6 @@ static char		**ft_strtomatr(char **split, const char *s, char c)
 	}
 	return (split);
 }
-
-/*
-** Split the s string into substrings separated by
-** any character found in delim
-** Return the array of substrings or NULL in case of error
-*/
 
 char			**ft_split(const char *s, char c)
 {

@@ -6,12 +6,14 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 12:01:05 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/07 14:49:00 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/07 21:37:36 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
+/*
+공백 을 모두 2로 채우고 나머지는 문자를 숫자로 바꿈
+*/
 static int	save_row(char *row, int y, t_cub *cub)
 {
 	int	x;
@@ -38,7 +40,9 @@ static int	save_row(char *row, int y, t_cub *cub)
 	}
 	return (0);
 }
-
+/*
+맵을 한줄한줄 cub.map 의 int** grid 에 저장함
+*/
 static int	save_grid(t_list *trav, t_cub *cub)
 {
 	int	y;
@@ -69,7 +73,9 @@ static void	set_sprite(int x, int y, int i, t_cub *cub)
 	cub->sprites[i].tex_id = SPRITE;
 	cub->row[x] = '0';
 }
-
+/*
+스프라이트의 위치 정보를 저장.  저장했으면 2에서 0으로 바꿔줌.
+*/
 static int	save_sprite_positions(t_list *trav, t_cub *cub)
 {
 	int		y;
@@ -98,7 +104,10 @@ static int	save_sprite_positions(t_list *trav, t_cub *cub)
 	}
 	return (0);
 }
-
+/*
+save_grid를 통해 맵에있는 모든 문자를 **int grid에 넣음.  내 위치 (NSWE) , 스프라이트는
+위치를 저장한 후에 0으로 바꿔줌.
+*/
 int			save_map(t_list *trav, t_cub *cub)
 {
 	if (cub->map.sprites != 0)

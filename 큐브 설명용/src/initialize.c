@@ -6,7 +6,7 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 11:59:41 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/07 14:45:55 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/19 23:52:16 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ static void		initialize_cub(t_cub *cub)
 	cub->fov_angle = FOV * (PI / 180);   //60도 라디안
 	cub->half_fov_angle = (FOV / 2) * (PI / 180);   //30도 라디안
 	cub->angle_step = cub->fov_angle / cub->width;    //60도 라디안을 화면 넓이로 나눔.
+	//angle_step 은 60도를 화면 넓이 픽셀로 나눠서, 레이를 쏠 때 픽셀하나 움직일 때의 각도가 됨.
 	cub->dist_proj_plane = (cub->width / 2) / tan(cub->half_fov_angle);  //화면의 끝 까지의 길이 distance
+	//벽이 아니라, 화면의 끝 까지의 거리.
 }
 
 void			initialize(t_cub *cub)

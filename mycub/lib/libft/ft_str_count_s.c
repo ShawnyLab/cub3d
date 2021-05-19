@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str_count_s.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbudau <gbudau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/22 16:18:41 by gbudau            #+#    #+#             */
-/*   Updated: 2020/07/22 16:38:15 by gbudau           ###   ########.fr       */
+/*   Created: 2021/05/12 16:37:39 by jinspark          #+#    #+#             */
+/*   Updated: 2021/05/12 16:37:43 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-** Return the number of substrings found in s that are
-** separated by any character found in delim
-*/
 
 size_t	ft_str_count_s(const char *s, const char *delim)
 {

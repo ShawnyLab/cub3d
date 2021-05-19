@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbudau <gbudau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/01 20:01:20 by gbudau            #+#    #+#             */
-/*   Updated: 2020/07/01 20:01:41 by gbudau           ###   ########.fr       */
+/*   Created: 2021/05/12 16:38:16 by jinspark          #+#    #+#             */
+/*   Updated: 2021/05/12 16:38:20 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-** Join s1 and s2 and return the new string
-** flag(1) - Free s1
-** flag(2) - Free s2
-** flag(12) - Free both
-*/
 
 char	*ft_strjoin_free(char *s1, char *s2, size_t flag)
 {

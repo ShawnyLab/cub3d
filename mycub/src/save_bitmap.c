@@ -6,7 +6,7 @@
 /*   By: jinspark <jinspark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 12:01:01 by jinspark          #+#    #+#             */
-/*   Updated: 2021/05/07 12:01:02 by jinspark         ###   ########.fr       */
+/*   Updated: 2021/05/19 15:15:09 by jinspark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	initialize_bit_info_header(t_bitmap_info_header *bih, t_cub *cub)
 	bih->bi_bit_count = 32;
 	bih->bi_compression = 0;
 	bih->bi_size_image = 0;
-	bih->bi_x_pels_per_meter = 2835;
-	bih->bi_y_pels_per_meter = 2835;
+	bih->bi_x_pels_per_meter = 2850;
+	bih->bi_y_pels_per_meter = 2850;
 	bih->bi_clr_used = 0;
 	bih->bi_clr_important = 0;
 }
